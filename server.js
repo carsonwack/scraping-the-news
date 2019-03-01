@@ -4,13 +4,6 @@ const logger = require("morgan");
 const mongoose = require("mongoose");
 const exphbs = require("express-handlebars");
 
-
-const axios = require("axios");
-const cheerio = require("cheerio");
-
-
-const db = require("./models");
-
 // const PORT = process.env.PORT || 8080;
 const PORT = 8080;
 
@@ -31,9 +24,8 @@ app.set("view engine", "handlebars");
 
 // const MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/mongoScraperDB";
 // mongoose.connect(MONGODB_URI, { useNewUrlParser: true });
-mongoose.connect("mongodb://localhost/mongoScraperDB", { useNewUrlParser: true });
 
-// --------------------------------------
+// // --------------------------------------
 
 
 
@@ -72,3 +64,9 @@ require("./routes/htmlRoutes")(app);
 app.listen(PORT, function () {
   console.log("App running on port " + PORT + "!");
 });
+
+
+
+var mongoose = require("mongoose");
+var MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/mongoScraperDB";
+mongoose.connect(MONGODB_URI, { useNewUrlParser: true });
