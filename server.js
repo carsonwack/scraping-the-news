@@ -65,8 +65,5 @@ app.listen(PORT, function () {
   console.log("App running on port " + PORT + "!");
 });
 
-
-
-var mongoose = require("mongoose");
-var MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/mongoScraperDB";
+const MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/mongoScraperDB";
 mongoose.connect(MONGODB_URI, { useNewUrlParser: true });
