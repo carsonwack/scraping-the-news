@@ -47,7 +47,7 @@ module.exports = function (app) {
 
 
 
-    app.get("/delete/:id")
+    // app.get("/delete/:id")
 
 
 

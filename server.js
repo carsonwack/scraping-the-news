@@ -66,4 +66,4 @@ app.listen(PORT, function () {
 });
 
 const MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/mongoScraperDB";
-mongoose.connect(MONGODB_URI, { useNewUrlParser: true });
+mongoose.connect(MONGODB_URI);
