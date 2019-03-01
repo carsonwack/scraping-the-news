@@ -17,19 +17,18 @@
   <div class="container">
     <div class="row">
       <div class="col-8 offset-2">
-        <ul id="articles-list">
+        <ul id="articles-list-saved">
           {{#each articles}}
           <li data-id="{{this._id}}" class="list-group-item">
             <a href="{{this.link}}">{{this.title}}</a>
-            <button type="button" href="/save/{{this._id}}" class="btn btn-outline-success btn-sm" id="save-button" data-id="{{this._id}}">Save</button>
-            <button type="button" href="/delete/{{this._id}}" class="btn btn-outline-danger btn-sm" id="del-button" data-id="{{this._id}}">Delete</button>
+            <button type="button" href="/remove/{{this._id}}" class="btn btn-outline-danger btn-sm" id="remove-button" data-id="{{this._id}}">Remove</button>
+            <button type="button" class="btn btn-outline-primary btn-sm" id="notes-button" data-id="{{this._id}}">Notes</button>
           </li>
           {{/each}}
         </ul>
       </div>
     </div>
   </div>
-  <button id="scrape">Scrape</button>
 </div>
 
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>

@@ -1,99 +1,106 @@
-// // Get references to page elements
-// var $exampleText = $("#example-text");
-// var $exampleDescription = $("#example-description");
-// var $submitBtn = $("#submit");
-// var $exampleList = $("#example-list");
 
-// // The API object contains methods for each kind of request we'll make
-// var API = {
-//   saveExample: function(example) {
-//     return $.ajax({
-//       headers: {
-//         "Content-Type": "application/json"
-//       },
-//       type: "POST",
-//       url: "api/examples",
-//       data: JSON.stringify(example)
-//     });
-//   },
-//   getExamples: function() {
-//     return $.ajax({
-//       url: "api/examples",
-//       type: "GET"
-//     });
-//   },
-//   deleteExample: function(id) {
-//     return $.ajax({
-//       url: "api/examples/" + id,
-//       type: "DELETE"
-//     });
-//   }
-// };
 
-// // refreshExamples gets new examples from the db and repopulates the list
-// var refreshExamples = function() {
-//   API.getExamples().then(function(data) {
-//     var $examples = data.map(function(example) {
-//       var $a = $("<a>")
-//         .text(example.text)
-//         .attr("href", "/example/" + example.id);
+$(function () {
 
-//       var $li = $("<li>")
-//         .attr({
-//           class: "list-group-item",
-//           "data-id": example.id
-//         })
-//         .append($a);
+    $(document).on("click", "#scrape", scrapeAndSave);
+    $(document).on("click", "#del-button", deleteArt);
+    $(document).on("click", "#save-button", makeArtSaved);
+    $(document).on("click", "#remove-button", makeArtUnsaved);
+    $(document).on("click", "#notes-button", notesModal);
 
-//       var $button = $("<button>")
-//         .addClass("btn btn-danger float-right delete")
-//         .text("ｘ");
+});
 
-//       $li.append($button);
 
-//       return $li;
-//     });
+function scrapeAndSave() {
+    $.ajax({
+        method: "GET",
+        url: "/scrape"
+    }).done(function () {
+        window.location.replace("/");
+    });
+};
 
-//     $exampleList.empty();
-//     $exampleList.append($examples);
-//   });
-// };
+function deleteArt() {
+    let idToDelete = $(this)
+        .attr("data-id");
+    $.ajax({
+        method: "DELETE",
+        url: "/delete/" + idToDelete
+    }).then(function () {
+        refreshArticles();
+    });
+};
 
-// // handleFormSubmit is called whenever we submit a new example
-// // Save the new example to the db and refresh the list
-// var handleFormSubmit = function(event) {
-//   event.preventDefault();
+function makeArtSaved() {
+    let idToSave = $(this)
+        .attr("data-id");
 
-//   var example = {
-//     text: $exampleText.val().trim(),
-//     description: $exampleDescription.val().trim()
-//   };
+    $.ajax({
+        method: "PUT",
+        url: "/save/" + idToSave
+    }).always(function () {
+        refreshArticles();
+    });
+};
 
-//   if (!(example.text && example.description)) {
-//     alert("You must enter an example text and description!");
-//     return;
-//   }
+function makeArtUnsaved() {
+    let idToRemove = $(this)
+        .attr("data-id");
 
-//   API.saveExample(example).then(function() {
-//     refreshExamples();
-//   });
+    $.ajax({
+        method: "PUT",
+        url: "/remove/" + idToRemove
+    }).always(function () {
+        console.log('TEST');
+        refreshSaved();
+    });
+};
 
-//   $exampleText.val("");
-//   $exampleDescription.val("");
-// };
 
-// // handleDeleteBtnClick is called when an example's delete button is clicked
-// // Remove the example from the db and refresh the list
-// var handleDeleteBtnClick = function() {
-//   var idToDelete = $(this)
-//     .parent()
-//     .attr("data-id");
 
-//   API.deleteExample(idToDelete).then(function() {
-//     refreshExamples();
-//   });
-// };
+function notesModal() {
+    // 
+};
 
-// // Add event listeners to the submit and delete buttons
-// $submitBtn.on("click", handleFormSubmit);
-// $exampleList.on("click", ".delete", handleDeleteBtnClick);
+
+
+function refreshArticles() {
+    $.ajax({
+        method: "GET",
+        url: "/articles"
+    })
+        .then(function (data) {
+            let $articles = data.map(function (art) {
+
+                let $li = `<li data-id="${art._id}" class="list-group-item"> <a href="${art.link}">${art.title}</a> 
+                <button type="button" href="/save/${art._id}" class="btn btn-outline-success btn-sm" id="save-button" data-id="${art._id}">Save</button>
+                <button type="button" href="/delete/${art._id}" class="btn btn-outline-danger btn-sm" id="del-button" data-id="${art._id}">Delete</button> </li>`
+
+                return $li;
+            });
+            $("#articles-list").empty();
+            $("#articles-list").append($articles);
+        })
+};
+
+
+function refreshSaved() {
+    $.ajax({
+        method: "GET",
+        url: "/saved/articles"
+    })
+        .then(function (data) {
+            let $articles = data.map(function (art) {
+
+                let $li = `<li data-id="${art._id}" class="list-group-item"> <a href="${art.link}">${art.title}</a> 
+                <button type="button" href="/remove/${art._id}" class="btn btn-outline-danger btn-sm" id="remove-button" data-id="${art._id}">Remove</button> 
+                <button type="button" class="btn btn-outline-primary btn-sm" id="notes-button" data-id="${art._id}">Notes</button> </li>`
+
+                return $li;
+            });
+            $("#articles-list-saved").empty();
+            $("#articles-list-saved").append($articles);
+        })
+};
+
+

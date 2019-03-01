@@ -1,3 +1,15 @@
 .list-group-item {
   line-height: 2.5;
 }
+
+
+#saved-articles {
+  background-color: #E6E6FA;
+  border-radius: 10px;
+  margin-left: 30px;
+}
+
+#to-home:hover {
+  cursor: pointer;
+  color: #5A5A5A;
+}
