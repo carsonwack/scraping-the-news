@@ -22,9 +22,9 @@ Browser:
 <br/><br/>
 
 ### Noteworthy tech used:
--express
--handlebars
--axios
--cheerio
--mongoDB
--mongoose
+-express </br>
+-handlebars </br>
+-axios </br>
+-cheerio </br>
+-mongoDB </br>
+-mongoose </br>
