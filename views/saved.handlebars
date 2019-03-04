@@ -5,7 +5,7 @@
     <div class="navbar" id="navbarSupportedContent">
       <ul class="navbar-nav mr-auto">
         <li class="nav-item active">
-          <a class="nav-link" href="/saved" id="saved-articles">Saved Articles <span class="sr-only">(current)</span></a>
+          <a class="nav-link" href="/saved" id="saved-articles">Saved Articles<span class="sr-only">(current)</span></a>
         </li>
       </ul>
     </div>
@@ -22,7 +22,7 @@
           <li data-id="{{this._id}}" class="list-group-item">
             <a href="{{this.link}}">{{this.title}}</a>
             <button type="button" href="/remove/{{this._id}}" class="btn btn-outline-danger btn-sm" id="remove-button" data-id="{{this._id}}">Remove</button>
-            <button type="button" class="btn btn-outline-primary btn-sm" id="notes-button" data-id="{{this._id}}">Notes</button>
+            <button type="button" data-toggle="modal" data-target="#myModal" class="btn btn-outline-primary btn-sm" id="notes-button" data-id="{{this._id}}">Notes</button>
           </li>
           {{/each}}
         </ul>
@@ -31,5 +31,44 @@
   </div>
 </div>
 
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+
+
+
+
+{{!-- MODAL --}}
+<div  class="modal fade" id="myModal" tabindex="-1" role="dialog">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 id="modal-title">
+
+        </h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div id="modal-text">
+
+        </div>
+      </div>
+      <div class="modal-footer">
+        <ul id="saved-notes"></ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script src="/js/index.js"></script>

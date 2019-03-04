@@ -50,14 +50,15 @@ module.exports = function (app) {
     app.put("/save/:id", function (req, res) {
         db.Article.findOneAndUpdate(
             { _id: req.params.id },
-            { $set: 
+            {
+                $set:
                 {
                     saved: true
                 }
             }
-        ).then(function(data) {
+        ).then(function (data) {
             res.status(200).end();
-        }).catch(function(error) {
+        }).catch(function (error) {
             console.log(error);
         });
     });
@@ -66,19 +67,18 @@ module.exports = function (app) {
     app.put("/remove/:id", function (req, res) {
         db.Article.findOneAndUpdate(
             { _id: req.params.id },
-            { $set: 
+            {
+                $set:
                 {
                     saved: false
                 }
             }
-        ).then(function(data) {
+        ).then(function (data) {
             res.status(200).end();
-        }).catch(function(error) {
+        }).catch(function (error) {
             console.log(error);
         });
     });
-
-
 
 
 
@@ -103,7 +103,7 @@ module.exports = function (app) {
 
 
     app.get("/saved/articles", function (req, res) {
-        db.Article.find( { saved: true } )
+        db.Article.find({ saved: true })
             .then(function (dbArticles) {
                 res.json(dbArticles);
             })
@@ -117,7 +117,59 @@ module.exports = function (app) {
 
 
 
+    app.get("/articles/:id", function (req, res) {
+        db.Article.findOne({ _id: req.params.id })
+            .populate("note")
+            .then(function (dbArticles) {
+                res.json(dbArticles);
+            })
+            .catch(function (err) {
+                console.log(err);
+            })
+    });
 
+
+    app.post("/articles/:id", function (req, res) {
+
+        db.Note.create(req.body)
+
+            .then(function (dbNote) {
+
+                return db.Article.findOneAndUpdate({ _id: req.params.id }, { $push: { note: dbNote._id } }, { new: true });
+            })
+
+            .then(function (dbArticle) {
+                res.json(dbArticle);
+            })
+
+
+            .catch(function (err) {
+                res.json(err);
+            });
+    });
+
+
+
+
+
+    // app.delete("/note/delete/:id", function (req, res) {
+
+    //     db.Note.remove({ _id: req.params.id }).exec();
+    //     db.Article.update( {}, { $pullAll: { note: [req.params.id] } } ).exec();
+    //     // next();
+    //         // .then(function (dbArticles) {
+    //         //     return db.Article.remove({ _id: req.params.id }, { $pull: { note: req.params.id } }, { new: true });
+    //         // })
+
+    //         // .then(function (dbArticle) {
+    //         //     res.json(dbArticle);
+    //         // })
+
+
+    //         // .catch(function (err) {
+    //         //     console.log(err);
+    //         // })
+    // });
 
 
 

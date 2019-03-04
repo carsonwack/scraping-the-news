@@ -21,7 +21,7 @@ module.exports = function (app) {
 
 
     app.delete("/delete/:id", function (req, res) {
-        db.Article.remove( {_id: req.params.id} )
+        db.Article.remove({ _id: req.params.id })
             .then(function (dbArticles) {
                 res.render("index", {
                     articles: dbArticles
@@ -46,8 +46,11 @@ module.exports = function (app) {
     });
 
 
+    
 
-    // app.get("/delete/:id")
+
+
+    
 
 
 

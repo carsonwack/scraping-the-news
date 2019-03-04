@@ -13,3 +13,60 @@
   cursor: pointer;
   color: #5A5A5A;
 }
+
+
+textarea, input {
+  display: block;
+  width: 100%;
+  background-color: #FCF5C7;
+}
+input {
+  height: 36px;
+  font-size: 24px;
+}
+textarea {
+  height: 200px;
+  font-size: 18px;
+}
+
+.modal-footer {
+  text-align: center;
+}
+
+#saved-note {
+  min-width: 30em;
+  display: inline-block;
+  margin: auto;
+}
+
+#saved-notes {
+  margin: auto;
+  padding: 0px;
+}
+
+#note-title {
+  display: inline-block;
+}
+
+#notes-del-button {
+  display: inline-block;
+  position: absolute;
+  right: 10px;
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
