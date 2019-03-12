@@ -263,5 +263,5 @@ textarea#titleinput:focus {
   text-transform: uppercase;
   font-size: 13px;
   line-height: 18px;
-  border-bottom: solid black 1px;
+  text-decoration: underline;
 }
