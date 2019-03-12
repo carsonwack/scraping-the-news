@@ -64,17 +64,18 @@ function makeArtUnsaved() {
     });
 };
 
-// function deleteNote() {
-//     let idToDelete = $(this)
-//         .attr("data-id");
+function deleteNote() {
+    let idToDelete = $(this)
+        .attr("data-id");
 
-//     $.ajax({
-//         method: "DELETE",
-//         url: "/note/delete/" + idToDelete
-//     }).then(function () {
-//         refreshNotes(idToDelete);
-//     });
-// };
+    $.ajax({
+        method: "DELETE",
+        url: "/note/delete/" + idToDelete
+    }).then(function (data) {
+        console.log(data);
+        refreshNotes(idToDelete);
+    });
+};
 
 
 function refreshArticles() {
@@ -146,6 +147,7 @@ function displayModal() {
 
                     let $li = `<li data-id="${note._id}" class="list-group-item" id="saved-note">
                     <p id="note-title">${note.title}</p> 
+                    <div id="separator"></div>
                     <button type="button" href="/delete/${note._id}" class="btn btn-outline-danger btn-sm" id="notes-del-button" data-id="${note._id}">&times</button>
                     <p id="note-body">${note.body}</p> </li>`
 
@@ -176,7 +178,6 @@ function saveNote() {
         .then(function (data) {
             $("#titleinput").val("");
             $("#bodyinput").val("");
-            console.log(data + "  TEST");
             refreshNotes(noteId);
         })
 };
@@ -184,7 +185,7 @@ function saveNote() {
 
 
 function refreshNotes(noteId) {
-
+    console.log("NoteID: ", noteId);
     $.ajax({
         method: "GET",
         url: "/articles/" + noteId
@@ -196,6 +197,7 @@ function refreshNotes(noteId) {
 
                 let $li = `<li data-id="${note._id}" class="list-group-item" id="saved-note">
                 <p id="note-title">${note.title}</p> 
+                <div id="separator"></div>
                 <button type="button" href="/note/delete/${note._id}" class="btn btn-outline-danger btn-sm" id="notes-del-button" data-id="${note._id}">&times</button> 
                 <p id="note-body">${note.body}</p> 
                 </li>`;

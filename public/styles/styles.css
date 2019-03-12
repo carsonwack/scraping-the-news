@@ -1,13 +1,56 @@
 .list-group-item {
   line-height: 2.5;
+  background-color: #fafafa;
 }
 
+a {
+  color: black;
+}
+
+a:hover {
+  color: black;
+}
+
+/* ------- */
+
+a {
+    position: relative;
+}
+
+.list-group-item a::after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    bottom: -3px;
+    width: 60%;
+    height: 1px;
+    opacity: 0;
+    background-color: #030408;
+    transform: translate(-50%, 0);
+    transition: all 0.7s ease-in-out;
+}
+
+.list-group-item a:hover::after {
+    width: 98%;
+    opacity: 1;
+}
+
+.list-group-item a {
+    text-decoration: none;
+}
+/* ------- */
+
+#saved-articles:hover {
+  background-color: #eeeefb;
+  border-radius: 10px;
+}
 
 #saved-articles {
-  background-color: #E6E6FA;
-  border-radius: 10px;
-  margin-left: 30px;
+  margin-left: 40px;
+  padding-bottom: 10px;
+  transition: all 0.8s;
 }
+
 
 #to-home:hover {
   cursor: pointer;
@@ -18,7 +61,7 @@
 textarea, input {
   display: block;
   width: 100%;
-  background-color: #FCF5C7;
+  background-color: #fffadb;
 }
 input {
   height: 36px;
@@ -57,16 +100,168 @@ textarea {
 
 
 
+#save-button {
+  background-color: #f3fff3;
+  float: right;
+  margin: 4px;
+}
+
+
+#del-button {
+  color: #c93030;
+  background-color: #f8f2f3;
+  float: right;
+  margin: 4px;
+ }
+
+
+#save-button:hover, #del-button:hover {
+  color: black;
+  border: 1px solid black;
+}
+
+#remove-button {
+  color: #c93030;
+  background-color: #f8f2f3;
+  margin: 4px;
+  float: right;
+}
+
+#notes-button {
+  background-color: #edf1ff;
+  margin: 4px;
+  clear: left;
+  float: right;
+}
+
+
+#remove-button:hover, #notes-button:hover {
+  color: black;
+  border: 1px solid black;
+}
+
+.scraper-div {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 50px;
+}
+
+#scrape {
+  color: #212529;
+  background-color: #f9fbf4;
+  border-radius: 7px;
+  padding: 5px 25px 7px 25px
+}
+
+#scrape:hover {
+
+}
 
 
 
 
 
 
+#scrape {
+  display: inline-block;
+  cursor: pointer;
+  outline: none;
+  border: none;
+  border-radius: 15px;
+  box-shadow: 0 2px #999;
+  font-size: 20px;
+}
+
+#scrape:hover {
+  background-color: rgba(236, 233, 233, 0.9)
+  }
+
+#scrape:active {
+  box-shadow: 0 1px #666;
+  transform: translateY(1px);
+}
+
+.navbar-light {
+  padding-bottom: 3px;
+  border-bottom: 1px solid gray;
+}
+
+
+.saved-header {
+  font-size: 20px;
+  padding: 2px;
+  border-bottom: 1px solid black;
+
+}
+
+#save-note {
+  color: blue;
+  color: #ffffff;
+  background-color: #4eb5f1;
+  text-align: center;
+  transition: all 0.2s;
+  border: none;
+  border-radius: 10px;
+  padding: 5px 12px 5px 12px;
+  margin: 5px 5px 5px 0px;
+}
+
+#save-note:hover {
+  background-color: #a4d7e7;
+}
+
+input#titleinput {
+  font-family: -webkit-pictograph;
+  padding-left: 10px;
+}
+
+::placeholder {
+  color: #bcbcbc;
+  font-size: 16px;
+}
+
+#separator {
+  border-bottom: 1px solid #b3b1b1;
+  width: 50%;
+  margin: auto;
+
+}
+
+#note-title {
+  margin: 0px;
+}
+
+#note-body {
+  margin-top: 15px;
+  width: 360px
+}
+
+li#saved-note.list-group-item {
+  margin: 3px 0px;
+  background-color: #fffadb;
+}
 
 
 
+input:focus {
+    outline: none;
+}
+
+textarea#bodyinput:focus {
+  outline: none;
+}
+
+textarea#titleinput:focus {
+  outline: none;
+}
 
 
-
-
+#modal-title {
+  margin-left: 25px;
+  text: center;
+  text-transform: uppercase;
+  font-size: 13px;
+  line-height: 18px;
+  border-bottom: solid black 1px;
+}

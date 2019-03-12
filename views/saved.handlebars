@@ -12,6 +12,9 @@
   </nav>
 </header>
 
+<div class="scraper-div">
+  <h3 class="saved-header">Saved</h3>
+</div>
 
 <div id="home">
   <div class="container">
@@ -21,8 +24,10 @@
           {{#each articles}}
           <li data-id="{{this._id}}" class="list-group-item">
             <a href="{{this.link}}">{{this.title}}</a>
-            <button type="button" href="/remove/{{this._id}}" class="btn btn-outline-danger btn-sm" id="remove-button" data-id="{{this._id}}">Remove</button>
-            <button type="button" data-toggle="modal" data-target="#myModal" class="btn btn-outline-primary btn-sm" id="notes-button" data-id="{{this._id}}">Notes</button>
+            <button type="button" href="/remove/{{this._id}}" class="btn btn-outline-danger btn-sm" id="remove-button"
+              data-id="{{this._id}}">Remove</button>
+            <button type="button" data-toggle="modal" data-target="#myModal" class="btn btn-outline-primary btn-sm"
+              id="notes-button" data-id="{{this._id}}">Notes</button>
           </li>
           {{/each}}
         </ul>
@@ -37,7 +42,7 @@
 
 
 {{!-- MODAL --}}
-<div  class="modal fade" id="myModal" tabindex="-1" role="dialog">
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog">
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
       <div class="modal-header">

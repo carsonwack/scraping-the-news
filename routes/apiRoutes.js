@@ -152,24 +152,49 @@ module.exports = function (app) {
 
 
 
-    // app.delete("/note/delete/:id", function (req, res) {
-
-    //     db.Note.remove({ _id: req.params.id }).exec();
-    //     db.Article.update( {}, { $pullAll: { note: [req.params.id] } } ).exec();
-    //     // next();
-    //         // .then(function (dbArticles) {
-    //         //     return db.Article.remove({ _id: req.params.id }, { $pull: { note: req.params.id } }, { new: true });
-    //         // })
-
-    //         // .then(function (dbArticle) {
-    //         //     res.json(dbArticle);
-    //         // })
+    app.delete("/note/delete/:id", function (req, res) {
 
 
-    //         // .catch(function (err) {
-    //         //     console.log(err);
-    //         // })
-    // });
+        db.Note.remove({ _id: req.params.id })
+            .then(function (data) {
+                console.log(data);
+            })
+
+            .then(function (adata, next) {
+                console.log("data", adata);
+                
+                // db.Article.remove( [{ _id: req.params.id }, { $pull: { note: req.params.id } }, { new: true }] )
+                //     .then(function (data) {
+                //         console.log("article data", data);
+                //         res.send(data);
+                //     })
+
+
+                //     .catch(function (err) {
+                //         console.log(err);
+                //     })
+
+                db.Note.remove({ _id: req.params.id }).exec();
+                db.Article.updateOne( {}, { $pullAll: { note: [req.params.id] } } ).exec();
+                next();
+                // .then(function (dbArticles) {
+                //     return db.Article.remove({ _id: req.params.id }, { $pull: { note: req.params.id } }, { new: true });
+                // })
+
+                // .then(function (dbArticle) {
+                //     res.json(dbArticle);
+                // })
+
+
+                // .catch(function (err) {
+                //     console.log(err);
+                // })
+            });
+
+    });
+
+
+
 
 
 
