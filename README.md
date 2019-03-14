@@ -5,7 +5,7 @@
 
 ### Web Use
 
-Simply visit **[this heroku link]**(https://gentle-brook-76325.herokuapp.com) and do some scraping & note-taking!
+Simply visit **[this heroku link](https://gentle-brook-76325.herokuapp.com)** and do some scraping & note-taking!
 
 <br/><br/>
 
