@@ -1,4 +1,4 @@
-# scraping-the-news
+# Five-Thirty-Scraped
 ### Users can scrape articles from FiveThirtyEight.com & add notes to them.
 ![](coverImage/five-thirty-scraped.png)
 
